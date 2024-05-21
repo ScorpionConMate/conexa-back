@@ -58,3 +58,21 @@ export class ForbiddenError extends BaseErrorResponse {
 	@ApiProperty({ example: 403 })
 	statusCode: number;
 }
+
+export class NotFoundError extends BaseErrorResponse {
+	@ApiProperty({ example: "Resource not found." })
+	message: string;
+	@ApiProperty({ example: "NOT_FOUND" })
+	code: string;
+	@ApiProperty({ example: 404 })
+	statusCode: number;
+}
+
+export class BadRequestError extends BaseErrorResponse {
+	@ApiProperty({ example: "Bad request." })
+	message: string;
+	@ApiProperty({ example: "BAD_REQUEST" })
+	code: string;
+	@ApiProperty({ example: 400 })
+	statusCode: number;
+}

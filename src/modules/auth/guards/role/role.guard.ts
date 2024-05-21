@@ -23,7 +23,7 @@ export class RoleGuard implements CanActivate {
 
 		const request = context.switchToHttp().getRequest();
 		const user = request.user as User;
-		if (this.matchRole(role, user.role)) {
+		if (this.matchRole(role, user.role.toUpperCase())) {
 			return true;
 		} else {
 			throw new ForbiddenException({

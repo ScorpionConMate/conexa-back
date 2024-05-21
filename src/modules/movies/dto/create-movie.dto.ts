@@ -1,4 +1,4 @@
-import { MoviesModuleDocs } from '../docs';
+import { MoviesModuleDocs } from "../docs";
 
 export class CreateMovieDto {
 	@MoviesModuleDocs.PARAMS.title.API_DEFINITIONS
@@ -16,4 +16,12 @@ export class CreateMovieDto {
 	@MoviesModuleDocs.PARAMS.releaseDate.API_DEFINITIONS
 	@MoviesModuleDocs.PARAMS.releaseDate.VALIDATIONS
 	releaseDate: Date;
+
+	@MoviesModuleDocs.PARAMS.shortDescription.API_DEFINITIONS
+	@MoviesModuleDocs.PARAMS.shortDescription.VALIDATIONS
+	shortDescription: string;
+
+	@MoviesModuleDocs.PARAMS.longDescription.API_DEFINITIONS
+	@MoviesModuleDocs.PARAMS.longDescription.VALIDATIONS
+	longDescription: string;
 }

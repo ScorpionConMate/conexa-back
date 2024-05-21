@@ -25,4 +25,6 @@ export interface SwapiMovie {
 
 	/** the ISO 8601 date format of the time that this resource was edited. */
 	edited: string;
+
+	opening_crawl: string;
 }

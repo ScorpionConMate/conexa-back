@@ -8,6 +8,7 @@ import {
 	Delete,
 	UseGuards,
 	Res,
+	Request,
 } from "@nestjs/common";
 import { MoviesService } from "./movies.service";
 import { CreateMovieDto } from "./dto/create-movie.dto";
@@ -26,12 +27,12 @@ export class MoviesController {
 	@UseGuards(AccessTokenGuard, RoleGuard)
 	@MoviesModuleDocs.ENDPOINTS.create
 	@Post()
-	create(
+	async create(
 		@Body() createMovieDto: CreateMovieDto,
 		@Res() response: FastifyReply,
+		@Request() req,
 	) {
-		const movie = this.moviesService.create(createMovieDto);
-		// return a 201 status code
+		const movie = await this.moviesService.create(createMovieDto, req.user.sub);
 		return response.status(201).send(movie);
 	}
 
@@ -46,9 +47,7 @@ export class MoviesController {
 	@Get(":id")
 	@MoviesModuleDocs.ENDPOINTS.findOne
 	findOne(@Param("id") id: string) {
-		return {
-			message: `Find one movie with id: ${id}`,
-		};
+		return this.moviesService.findOne(id);
 	}
 
 	@Role("ADMIN")
@@ -56,7 +55,7 @@ export class MoviesController {
 	@Patch(":id")
 	@MoviesModuleDocs.ENDPOINTS.update
 	update(@Param("id") id: string, @Body() updateMovieDto: UpdateMovieDto) {
-		return this.moviesService.update(+id, updateMovieDto);
+		return this.moviesService.update(id, updateMovieDto);
 	}
 
 	@Role("ADMIN")
@@ -64,6 +63,6 @@ export class MoviesController {
 	@Delete(":id")
 	@MoviesModuleDocs.ENDPOINTS.remove
 	remove(@Param("id") id: string) {
-		return this.moviesService.remove(+id);
+		return this.moviesService.remove(id);
 	}
 }

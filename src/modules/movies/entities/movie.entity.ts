@@ -38,6 +38,15 @@ export class Movie {
 	@Column({ type: "timestamptz", nullable: false })
 	releaseDate: Date;
 
+	@Column({ type: "bool", default: false, select: false })
+	isFromApi: boolean;
+
+	@Column({ type: "varchar", nullable: false, length: 100, default: "" })
+	shortDescription: string;
+
+	@Column({ type: "text", nullable: false, default: "", select: false })
+	longDescription: string;
+
 	@CreateDateColumn()
 	createdAt: Date;
 
@@ -51,6 +60,10 @@ export class Movie {
 
 	// Relationship with User that created the movie
 	@ManyToOne(() => User, (user) => user.movies, { eager: true })
-	@JoinColumn()
+	@JoinColumn({ name: "userId" })
 	user: User;
+
+	// User ID can be null if the movie was created by an external API
+	@Column({ nullable: true, select: false })
+	userId?: string;
 }

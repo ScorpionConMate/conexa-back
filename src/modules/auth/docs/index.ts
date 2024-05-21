@@ -17,8 +17,8 @@ import {
 	UserAlreadyExistsError,
 	ValidationRequestError,
 } from "src/shared/app-errors";
-import { AuthController } from '../auth.controller';
-import { Docs } from 'src/shared/interfaces/docs';
+import { AuthController } from "../auth.controller";
+import { Docs } from "src/shared/interfaces/docs";
 
 class LoggedInResponse {
 	@ApiProperty({ example: "eyJ ..." })

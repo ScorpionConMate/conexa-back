@@ -7,23 +7,39 @@ import { MoviesRepository } from "./movies.repository";
 export class MoviesService {
 	constructor(private moviesRepository: MoviesRepository) {}
 
-	create(createMovieDto: CreateMovieDto) {
-		return "This action adds a new movie";
+	create(createMovieDto: CreateMovieDto, userId?: string) {
+		const movie = this.moviesRepository.create({
+			...createMovieDto,
+			userId,
+		});
+		return this.moviesRepository.save(movie);
 	}
 
 	findAll() {
 		return this.moviesRepository.publicMovies();
 	}
 
-	findOne(id: number) {
-		return `This action returns a #${id} movie`;
+	async findOne(id: string) {
+		return this.moviesRepository.publicMovie(id);
 	}
 
-	update(id: number, updateMovieDto: UpdateMovieDto) {
-		return `This action updates a #${id} movie`;
+	update(id: string, updateMovieDto: UpdateMovieDto) {
+		return this.moviesRepository.update(id, updateMovieDto);
 	}
 
-	remove(id: number) {
-		return `This action removes a #${id} movie`;
+	remove(id: string) {
+		return this.moviesRepository.delete(id);
+	}
+
+	async createApiMovie(movie: CreateMovieDto) {
+		return this.moviesRepository.save({
+			...movie,
+			isFromApi: true,
+			userId: null,
+		});
+	}
+
+	async deleteApiMovies() {
+		return this.moviesRepository.deleteApiMovies();
 	}
 }

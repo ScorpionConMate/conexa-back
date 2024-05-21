@@ -1,8 +1,6 @@
 import { HttpException, Injectable } from "@nestjs/common";
 import { hash } from "argon2";
-import { v4 as uuid } from "uuid";
 import { User } from "./entities/user.entity";
-import { InjectRepository } from "@nestjs/typeorm";
 import { UsersRepository } from "./users.repository";
 
 @Injectable()

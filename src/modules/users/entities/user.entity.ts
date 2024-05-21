@@ -1,4 +1,4 @@
-import { Movie } from 'src/modules/movies/entities/movie.entity';
+import { Movie } from "src/modules/movies/entities/movie.entity";
 import {
 	Column,
 	CreateDateColumn,
