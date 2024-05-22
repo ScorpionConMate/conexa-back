@@ -3,7 +3,7 @@ import { SearchResultSWApi, SwapiMovie } from "./swapi.interface";
 import axios, { AxiosInstance } from "axios";
 @Injectable()
 export class SWApi {
-	private URL = "https://swapi.dev/api/";
+	private URL = process.env.SWAPI_URL || "https://swapi.dev/api";
 	private http: AxiosInstance;
 	constructor() {
 		this.http = axios.create({
