@@ -40,7 +40,7 @@ class LoggedInUser {
 	updatedAt: Date;
 }
 
-export const AuthModuleDocs: Docs<any, AuthController> = {
+export const AuthModuleDocs = {
 	ENDPOINTS: {
 		login: applyDecorators(
 			ApiOkResponse({
@@ -127,4 +127,4 @@ export const AuthModuleDocs: Docs<any, AuthController> = {
 			ApiTags("Auth"),
 		),
 	},
-};
+} satisfies Docs<any, AuthController>;

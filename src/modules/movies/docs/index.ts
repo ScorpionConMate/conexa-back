@@ -31,7 +31,7 @@ const movieExample = {
 	createdAt: new Date(),
 	updatedAt: new Date(),
 };
-export const MoviesModuleDocs: Docs<CreateMovieDto, MoviesController> = {
+export const MoviesModuleDocs = {
 	PARAMS: {
 		title: {
 			API_DEFINITIONS: applyDecorators(
@@ -215,4 +215,4 @@ export const MoviesModuleDocs: Docs<CreateMovieDto, MoviesController> = {
 			ApiTags("Movies"),
 		),
 	},
-};
+} satisfies Docs<CreateMovieDto, MoviesController>;

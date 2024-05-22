@@ -10,7 +10,7 @@ import {
 import { CreateUserDto } from "../dto/create-user.dto";
 import { Docs } from "src/shared/interfaces/docs";
 
-export const UsersModuleDocs: Docs<CreateUserDto, undefined> = {
+export const UsersModuleDocs = {
 	PARAMS: {
 		username: {
 			API_DEFINITIONS: applyDecorators(
@@ -75,4 +75,4 @@ export const UsersModuleDocs: Docs<CreateUserDto, undefined> = {
 			),
 		},
 	},
-};
+} satisfies Docs<CreateUserDto, undefined>;
